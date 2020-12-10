@@ -40,12 +40,11 @@ public class GitRepositoryRepository {
         GitRepositoryEntity myGitRepoEntity = gitRepositoryDao.findById(name).get();
         GitRepository newGitRepoository = new GitRepository(myGitRepoEntity.getName(), myGitRepoEntity.getOwner(),myGitRepoEntity.getIssues(),myGitRepoEntity.getForks(), myGitRepoEntity.getTime());
 
-        if ((Instant.now().getEpochSecond()-newGitRepoository.getTime())>500) {
+        if ((Instant.now().getEpochSecond()-newGitRepoository.getTime())>300) {
             GitRepositoryDTO myGitRepoDTO;
             myGitRepoDTO = githubRepositoyDAO.GetGitRepositoryDTO(newGitRepoository.getName(), newGitRepoository.getOwner());
             newGitRepoository.setIssues(myGitRepoDTO.getOpen_issues());
             newGitRepoository.setForks(myGitRepoDTO.getForks());
-            LocalTime lt = LocalTime.now();
             newGitRepoository.setTime((Instant.now().getEpochSecond()));
             patchRepository(newGitRepoository.getName(), newGitRepoository);
         }
