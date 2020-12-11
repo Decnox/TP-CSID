@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +14,7 @@ public class RepositoryService {
 	private final GitRepositoryRepository gitRepositoryRepository;
 	//private final List<GitRepository> repositories = List.of(new GitRepository("test", "jule",5,5),
 			//new GitRepository("machin", "jean",5,5));
-	
+	@Autowired
 	public RepositoryService(GitRepositoryRepository gitRepositoryRepository) {
 
 		this.gitRepositoryRepository=gitRepositoryRepository;
